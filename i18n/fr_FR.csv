@@ -1,4 +1,4 @@
-Back,Dos
+Back,Retour
 Cancel,Annuler
 Continue,Continuer
 Disabled,Désactivé
@@ -33,3 +33,4 @@ Title,Titre
 "SETTING_GUIDE","<p>Vous devrez définir vos clés API avant de pouvoir accepter les paiements. Si vous n'avez pas encore de compte Stancer, veuillez <a href='https://manage.stancer.com/en/sign-up?utm_campaign=marketing&utm_source=magento&utm_medium=referred' target='_blank' rel='noopener noreferrer '>cliquez ici</a> pour vous inscrire.</p><p><a href='https://www.stancer.com/documentation/resources/?utm_campaign=marketing&utm_source=magento&utm_medium=referred' target='_blank ' rel='noopener noreferrer'>En savoir plus</a> sur la configuration de ce module à partir de la documentation officielle de Stancer sur Magento.</p><p>Pour une assistance technique supplémentaire, contactez <a href='mailto:magento@stancer.com' target ='_blank' rel='noopener noreferrer'>magento@stancer.com</a>.</p>"
 "Payment Description","Description de paiement"
 "By using the following tags you can use order data in the payment description:<br></br>Order ID: %order%<br></br>Amount: %amount%<br></br>Store Name: %store%","En utilisant les balises suivantes, vous pouvez utiliser les données de la commande dans la description du paiement:<br></br>ID de commande: %order%<br></br>Montant: %amount%<br></br>Nom du magasin: %store%"
+"Refund is not available, this is probably because your payment isn't captured yet","Le remboursement n'est pas disponible, cela est probablement du au fait que le payement n'est pas capturé."

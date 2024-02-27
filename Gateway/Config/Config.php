@@ -24,6 +24,7 @@ class Config extends \Magento\Payment\Gateway\Config\Config
 {
     public const KEY_MODE = 'mode';
     public const KEY_ACTIVE = 'active';
+    public const KEY_REFUND_ACTIVE ='refund_active';
     public const KEY_PUBLIC_KEY = 'public_key';
     public const KEY_PRIVATE_KEY = 'private_key';
     public const KEY_TEST_MODE_PUBLIC_KEY = 'test_public_key';
@@ -106,6 +107,21 @@ class Config extends \Magento\Payment\Gateway\Config\Config
     {
         return $this->getValue(
             self::KEY_MODE,
+            $this->storeConfigResolver->getStoreId()
+        );
+    }
+
+    /**
+     * Get Refund Configuration
+     *
+     * @return bool
+     * @throws InputException
+     * @throws NoSuchEntityException
+     */
+    public function isRefundActive(): bool
+    {
+        return $this->getValue(
+            self::KEY_REFUND_ACTIVE,
             $this->storeConfigResolver->getStoreId()
         );
     }
