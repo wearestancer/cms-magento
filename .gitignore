@@ -1,0 +1,18 @@
+
+# Dependencies
+node_modules/
+vendor/
+vendor-prefixer/
+
+# Local
+.vscode/
+*.local.sh
+
+# OS specific files
+.DS_Store
+._*
+.directory
+
+# Generated content
+!**/.gitkeep
+composer.lock

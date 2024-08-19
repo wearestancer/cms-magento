@@ -1,0 +1,33 @@
+{
+    "name": "stancer/cms-magento",
+    "description": "Stancer Magento module",
+    "version": "1.0.1",
+    "type": "magento2-module",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4",
+        "stancer/stancer": "^1.1 || ^2.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.10"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "StancerIntegration\\Payments\\": ""
+        }
+    },
+    "replace": {
+        "stancer/module-payments": "*"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "support": {
+        "docs": "https://gitlab.com/wearestancer/cms/magento/-/wikis/home",
+        "issues": "https://gitlab.com/wearestancer/cms/magento/-/issues",
+        "source": "https://gitlab.com/wearestancer/cms/magento"
+    }
+}

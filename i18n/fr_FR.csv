@@ -1,0 +1,39 @@
+Back,Dos
+Cancel,Annuler
+Continue,Continuer
+Disabled,Désactivé
+Enabled,Activé
+Enable,Activer
+Configure,Configurer
+Close,Fermer
+"Authorize and Capture","Autoriser et capturer"
+Test,Test
+Live,En direct
+Environment,Environnement
+Title,Titre
+"Payment action","Action de paiement"
+"Payment flow","Flux de paiement"
+"Module version","Version du module"
+"Basic Settings","Paramètres de base"
+"Public Key","Clé publique"
+"Private Key","Clé privée"
+"Test Mode Public Key","Clé publique du mode test"
+"Test Mode Private Key","Clé privée du mode test"
+"3D Secure","3D sécurisé"
+"3D Secure Verification","Vérification sécurisée 3D"
+"Always request 3DS","Toujours demander 3DS"
+"Threshold Amount","Montant de seuil"
+"Failed to load the payment page, please try again and make sure the order placed.","Échec du chargement de la page de paiement, veuillez réessayer et assurez-vous que la commande est passée."
+"Payment is not initialized, please place your order first!","Le paiement n'est pas initialisé, veuillez d'abord passer votre commande!"
+"Please place your order first!","Veuillez d'abord passer votre commande!"
+"The selected Payment Method is Not Belonging to Stancer Payments.","Le mode de paiement sélectionné n'appartient pas à Stancer Payments."
+"No authorization transaction to proceed capture.","Aucune transaction d'autorisation pour procéder à la capture."
+"Capture is not allowed due to the transaction is not in authorized status.","La capture n'est pas autorisée car la transaction n'a pas le statut autorisé."
+"Gateway rejected the transaction.","La passerelle a rejeté la transaction."
+"Redirect customers to Stancer website.","Redirigez les clients vers le site Web de Stancer."
+"Embed payment form into the native flow.","Intégrez le formulaire de paiement dans le flux natif."
+"Sorry, but something went wrong","Désolé, mais quelque chose s'est mal passé."
+"Simple payment solution at low prices.","Solution de paiement simple à bas prix."
+"SETTING_GUIDE","<p>Vous devrez définir vos clés API avant de pouvoir accepter les paiements. Si vous n'avez pas encore de compte Stancer, veuillez <a href='https://manage.stancer.com/en/sign-up?utm_campaign=marketing&utm_source=magento&utm_medium=referred' target='_blank' rel='noopener noreferrer '>cliquez ici</a> pour vous inscrire.</p><p><a href='https://www.stancer.com/documentation/resources/?utm_campaign=marketing&utm_source=magento&utm_medium=referred' target='_blank ' rel='noopener noreferrer'>En savoir plus</a> sur la configuration de ce module à partir de la documentation officielle de Stancer sur Magento.</p><p>Pour une assistance technique supplémentaire, contactez <a href='mailto:magento@stancer.com' target ='_blank' rel='noopener noreferrer'>magento@stancer.com</a>.</p>"
+"Payment Description","Description de paiement"
+"By using the following tags you can use order data in the payment description:<br></br>Order ID: %order%<br></br>Amount: %amount%<br></br>Store Name: %store%","En utilisant les balises suivantes, vous pouvez utiliser les données de la commande dans la description du paiement:<br></br>ID de commande: %order%<br></br>Montant: %amount%<br></br>Nom du magasin: %store%"

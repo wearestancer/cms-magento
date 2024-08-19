@@ -1,0 +1,13 @@
+.stancer-section .heading {
+  background: url('images/logo.svg#stancer') no-repeat 0 50% / 18rem 2.8rem;
+  padding-left: 20rem;
+}
+
+.stancer-section .button-container {
+  float: right;
+}
+
+.stancer-credentials-success-message {
+  margin: 0;
+  background: none;
+}

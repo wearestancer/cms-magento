@@ -1,0 +1,71 @@
+<div
+  class="payment-method"
+  data-bind="css: {'_active': (getCode() == isChecked())}"
+>
+  <div class="payment-method-title field choice">
+    <input
+      class="radio"
+      name="payment[method]"
+      type="radio"
+      data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"
+    />
+    <label
+      class="label"
+      data-bind="attr: {'for': getCode()}"
+    >
+      <span data-bind="text: getTitle()"></span>
+    </label>
+  </div>
+  <div class="payment-method-content">
+    <!-- ko foreach: getRegion('messages') -->
+      <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <div class="payment-method-billing-address">
+      <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+      <!--/ko-->
+    </div>
+    <div class="checkout-agreements-block">
+      <!-- ko foreach: $parent.getRegion('before-place-order') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+      <!--/ko-->
+    </div>
+    <div
+      class="actions-toolbar"
+      data-bind="visible: !isInAction()"
+    >
+      <div class="primary">
+        <button
+          class="button action primary checkout"
+          type="submit"
+          data-bind="click: placePendingPaymentOrder, attr: {title: $t('Continue')}, css: {disabled: !isPlaceOrderActionAllowed()}"
+          data-role="review-save"
+        >
+          <span data-bind="i18n: 'Continue'"></span>
+        </button>
+      </div>
+    </div>
+    <div data-bind="visible: isInAction()">
+      <div
+        class="message notice"
+        id="iframe-warning"
+      >
+        <div>
+          <!-- ko i18n: 'Please do not refresh the page until you complete payment.' --><!-- /ko -->
+        </div>
+      </div>
+      <!-- ko if: isPaymentReady() -->
+        <iframe
+          class="stancer iframe"
+          border="0"
+          data-bind="attr: {id: getCode() + '-iframe', src: getActionUrl()}, event: {load: iframeLoaded}"
+          data-container="stancer-iframe"
+          frameborder="0"
+          height="750"
+          scrolling="no"
+          width="100%"
+        ></iframe>
+      <!-- /ko -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <stancer_payments>
+                <group>stancer_group</group>
+                <model>StancerCreditCardFacade</model>
+                <active>0</active>
+                <title>Stancer Payments</title>
+                <order_status>pending_payment</order_status>
+                <mode>test</mode>
+                <payment_action>authorize</payment_action>
+                <payment_flow>redirect</payment_flow>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_refund>1</can_refund>
+                <can_cancel>1</can_cancel>
+                <can_edit>1</can_edit>
+                <can_review_payment>1</can_review_payment>
+                <can_deny_payment>1</can_deny_payment>
+                <is_gateway>1</is_gateway>
+                <public_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <private_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <test_public_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <test_private_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <three_ds_enabled>0</three_ds_enabled>
+                <three_ds_always_request>1</three_ds_always_request>
+                <three_ds_threshold_amount>0</three_ds_threshold_amount>
+                <payment_page_url>https://payment.stancer.com</payment_page_url>
+                <payment_description>%order%, %amount%, %store%</payment_description>
+            </stancer_payments>
+        </payment>
+    </default>
+</config>

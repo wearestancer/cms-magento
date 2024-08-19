@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd"
+>
+  <type name="StancerIntegration\Payments\Model\Ui\ConfigProvider">
+    <arguments>
+      <argument name="config" xsi:type="object"> StancerPaymentsConfig </argument>
+    </arguments>
+  </type>
+  <type name="Magento\Checkout\Model\CompositeConfigProvider">
+    <arguments>
+      <argument name="configProviders" xsi:type="array">
+        <item name="stancer_config_provider" xsi:type="object">
+        StancerIntegration\Payments\Model\Ui\ConfigProvider
+        </item>
+      </argument>
+    </arguments>
+  </type>
+  <type name="StancerIntegration\Payments\Block\Info">
+    <arguments>
+      <argument name="data" xsi:type="array">
+        <item xsi:type="string" name="is_secure_mode">
+          1
+        </item>
+      </argument>
+    </arguments>
+  </type>
+</config>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd"
+>
+  <!-- Value handlers infrastructure -->
+  <virtualType name="StancerPaymentsConfigValueHandler"
+    type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+    <arguments>
+      <argument name="configInterface" xsi:type="object"> StancerPaymentsConfig </argument>
+    </arguments>
+  </virtualType>
+  <virtualType name="StancerPaymentsValueHandlerPool"
+    type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+    <arguments>
+      <argument name="handlers" xsi:type="array">
+        <item name="default" xsi:type="string">
+          StancerPaymentsConfigValueHandler
+        </item>
+      </argument>
+    </arguments>
+  </virtualType>
+  <virtualType name="StancerCreditCardFacade" type="Magento\Payment\Model\Method\Adapter">
+    <arguments>
+      <argument name="code" xsi:type="const">
+        \StancerIntegration\Payments\Model\Ui\ConfigProvider::CODE </argument>
+      <argument name="formBlockType" xsi:type="string"> Magento\Payment\Block\Form </argument>
+      <argument name="infoBlockType" xsi:type="string"> StancerIntegration\Payments\Block\Info </argument>
+      <argument name="valueHandlerPool" xsi:type="object"> StancerPaymentsValueHandlerPool </argument>
+      <argument name="commandPool" xsi:type="object"> StancerPaymentsGatewayCommandPool </argument>
+    </arguments>
+  </virtualType>
+
+  <!-- Configuration reader -->
+  <virtualType name="StancerPaymentsConfig" type="StancerIntegration\Payments\Gateway\Config\Config">
+    <arguments>
+      <argument name="methodCode" xsi:type="const">
+        \StancerIntegration\Payments\Model\Ui\ConfigProvider::CODE </argument>
+    </arguments>
+  </virtualType>
+  <type name="StancerIntegration\Payments\Model\Adapter\StancerAdapter">
+    <arguments>
+      <argument name="config" xsi:type="object"> StancerPaymentsConfig </argument>
+    </arguments>
+  </type>
+
+  <!-- Commands infrastructure -->
+  <virtualType name="StancerPaymentsGatewayCommandPool"
+    type="Magento\Payment\Gateway\Command\CommandPool">
+    <arguments>
+      <argument name="commands" xsi:type="array">
+        <item name="authorize" xsi:type="string">
+          StancerPaymentsGatewayAuthorizeCommand
+        </item>
+        <item name="capture"
+          xsi:type="string">
+          StancerPaymentsGatewayCaptureCommand
+        </item>
+        <item name="refund"
+          xsi:type="string">
+          StancerPaymentsRefundCommand
+        </item>
+      </argument>
+    </arguments>
+  </virtualType>
+
+  <!-- Authorize command -->
+  <virtualType name="StancerPaymentsGatewayAuthorizeCommand"
+    type="Magento\Payment\Gateway\Command\GatewayCommand">
+    <arguments>
+      <argument name="requestBuilder" xsi:type="object"> StancerPaymentsGatewayAuthorizationRequest </argument>
+      <argument name="handler" xsi:type="object"> StancerPaymentsGatewayResponseHandlerComposite </argument>
+      <argument name="transferFactory" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Http\TransferFactory </argument>
+      <argument name="client" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Http\Client\TransactionSale </argument>
+      <argument name="validator" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Validator\SaleResponseCodeValidator </argument>
+    </arguments>
+  </virtualType>
+
+  <!-- Authorization Request -->
+  <virtualType
+    name="StancerPaymentsGatewayAuthorizationRequest"
+    type="Magento\Payment\Gateway\Request\BuilderComposite"
+  >
+    <arguments>
+      <argument name="builders" xsi:type="array">
+        <item name="store" xsi:type="string">
+        StancerIntegration\Payments\Gateway\Request\StoreDataBuilder
+        </item>
+        <item
+          name="customer" xsi:type="string">
+        StancerIntegration\Payments\Gateway\Request\CustomerDataBuilder
+        </item>
+        <item
+          name="payment" xsi:type="string">
+        StancerIntegration\Payments\Gateway\Request\PaymentDataBuilder
+        </item>
+        <item
+          name="address" xsi:type="string">
+        StancerIntegration\Payments\Gateway\Request\AddressDataBuilder
+        </item>
+        <item
+          name="3dSecure" xsi:type="string">
+        StancerIntegration\Payments\Gateway\Request\ThreeDSecureDataBuilder
+        </item>
+      </argument>
+    </arguments>
+  </virtualType>
+
+  <!-- Authorization Response -->
+  <virtualType
+    name="StancerPaymentsGatewayResponseHandlerComposite"
+    type="Magento\Payment\Gateway\Response\HandlerChain"
+  >
+    <arguments>
+      <argument name="handlers" xsi:type="array">
+        <item name="payment_details" xsi:type="string">
+        StancerIntegration\Payments\Gateway\Response\PaymentDetailsHandler
+        </item>
+        <item
+          name="txn_id" xsi:type="string">
+        StancerIntegration\Payments\Gateway\Response\TransactionIdHandler
+        </item>
+      </argument>
+    </arguments>
+  </virtualType>
+
+  <!-- Authorization Client -->
+  <type name="StancerIntegration\Payments\Gateway\Http\Client\TransactionSale">
+    <arguments>
+      <argument name="customLogger" xsi:type="object"> StancerPaymentsLogger </argument>
+    </arguments>
+  </type>
+
+  <!-- 3D Secure Data Builder -->
+  <type name="StancerIntegration\Payments\Gateway\Request\ThreeDSecureDataBuilder">
+    <arguments>
+      <argument name="config" xsi:type="object"> StancerPaymentsConfig </argument>
+    </arguments>
+  </type>
+
+  <!-- Capture command -->
+  <virtualType name="StancerPaymentsGatewayCaptureCommand"
+    type="Magento\Payment\Gateway\Command\GatewayCommand">
+    <arguments>
+      <argument name="requestBuilder" xsi:type="object"> StancerPaymentsCaptureRequest </argument>
+      <argument name="transferFactory" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Http\TransferFactory </argument>
+      <argument name="client" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Http\Client\TransactionCapture </argument>
+      <argument name="handler" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Response\CaptureHandler </argument>
+      <argument name="validator" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Validator\ResponseCodeValidator </argument>
+    </arguments>
+  </virtualType>
+
+  <!-- Capture Request -->
+  <virtualType name="StancerPaymentsCaptureRequest"
+    type="Magento\Payment\Gateway\Request\BuilderComposite">
+    <arguments>
+      <argument name="builders" xsi:type="array">
+        <item name="capture" xsi:type="string">
+        StancerIntegration\Payments\Gateway\Request\CaptureDataBuilder
+        </item>
+      </argument>
+    </arguments>
+  </virtualType>
+
+  <!-- Capture Client -->
+  <type name="StancerIntegration\Payments\Gateway\Http\Client\TransactionCapture">
+    <arguments>
+      <argument name="customLogger" xsi:type="object"> StancerPaymentsLogger </argument>
+    </arguments>
+  </type>
+
+  <!-- Refund command -->
+  <virtualType name="StancerPaymentsRefundCommand"
+    type="Magento\Payment\Gateway\Command\GatewayCommand">
+    <arguments>
+      <argument name="client" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Http\Client\TransactionRefund </argument>
+      <argument name="requestBuilder" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Request\RefundDataBuilder </argument>
+      <argument name="validator" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Validator\ResponseCodeValidator </argument>
+      <argument name="handler" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Response\RefundHandler </argument>
+      <argument name="transferFactory" xsi:type="object">
+        StancerIntegration\Payments\Gateway\Http\TransferFactory </argument>
+    </arguments>
+  </virtualType>
+
+  <!-- Refund Client -->
+  <type name="StancerIntegration\Payments\Gateway\Http\Client\TransactionRefund">
+    <arguments>
+      <argument name="customLogger" xsi:type="object"> StancerPaymentsLogger </argument>
+    </arguments>
+  </type>
+  <type name="StancerIntegration\Payments\Block\Info">
+    <arguments>
+      <argument name="config" xsi:type="object"> StancerPaymentsConfig </argument>
+    </arguments>
+  </type>
+  <virtualType name="StancerPaymentsLogger" type="Magento\Payment\Model\Method\Logger">
+    <arguments>
+      <argument name="config" xsi:type="object"> StancerPaymentsConfig </argument>
+    </arguments>
+  </virtualType>
+  <type name="StancerIntegration\Payments\Controller\RemotePayment">
+    <arguments>
+      <argument name="config" xsi:type="object"> StancerPaymentsConfig </argument>
+    </arguments>
+  </type>
+</config>
