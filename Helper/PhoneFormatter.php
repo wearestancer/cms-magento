@@ -16,8 +16,6 @@ namespace StancerIntegration\Payments\Helper;
 use libphonenumber\NumberParseException;
 use libphonenumber\PhoneNumberFormat;
 use libphonenumber\PhoneNumberUtil;
-use Magento\Checkout\Model\Session;
-use Magento\Sales\Model\Order;
 
 /**
  * Checkout workflow helper
@@ -26,33 +24,8 @@ class PhoneFormatter
 {
 
 	/**
-	 * @param array $data
-	 *
-	 * @return array
-	 */
-	public function updatePhoneNumbers(array $data): array
-	{
-		$billingCountry = $data['billing']['countryCodeAlpha2'];
-		$shippingCountry = $data['shipping']['countryCodeAlpha2'];
-
-		if (isset($data['customer']['phone'])) {
-			$data['customer']['phone'] = $this->updatePhoneNumber($data['customer']['phone'], $billingCountry);
-		}
-		if (isset($data['customer']['mobile'])) {
-			$data['customer']['mobile'] = $this->updatePhoneNumber($data['customer']['mobile'], $billingCountry);
-		}
-		if (isset($data['billing']['phone'])) {
-			$data['billing']['mobile'] = $this->updatePhoneNumber($data['customer']['mobile'], $billingCountry);
-		}
-		if (isset($data['shipping']['phone'])) {
-			$data['shipping']['mobile'] = $this->updatePhoneNumber($data['customer']['mobile'], $shippingCountry);
-		}
-
-		return $data;
-	}
-
-	/**
-	 * @param string $phoneNumber
+	 * Format a phone number following E164 standard.
+	 * @param string $phoneNumber A phone number with an unknown format.
 	 * @param string $countryCode
 	 *
 	 * @return string
