@@ -150,6 +150,7 @@ class StancerAdapter
 
         $customer = new Customer();
         $customer->setEmail($attributes[CustomerDataBuilder::CUSTOMER][CustomerDataBuilder::EMAIL]);
+        $customer->setMobile($attributes[CustomerDataBuilder::CUSTOMER][CustomerDataBuilder::PHONE]);
         $customer->setName(implode(' ', [
             $attributes[CustomerDataBuilder::CUSTOMER][CustomerDataBuilder::FIRST_NAME],
             $attributes[CustomerDataBuilder::CUSTOMER][CustomerDataBuilder::LAST_NAME],
