@@ -19,6 +19,7 @@ use Magento\Payment\Gateway\Http\ClientInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
 use Magento\Payment\Model\Method\Logger;
 use Psr\Log\LoggerInterface;
+use StancerIntegration\Payments\Helper\PhoneFormatter;
 use StancerIntegration\Payments\Model\Adapter\StancerAdapter;
 
 abstract class AbstractTransaction implements ClientInterface
@@ -39,6 +40,11 @@ abstract class AbstractTransaction implements ClientInterface
     protected $adapter;
 
     /**
+     * @var
+     */
+    protected $phoneFormatter;
+
+    /**
      * Construct AbstractTransaction class
      *
      * @since 1.0.0
@@ -46,12 +52,14 @@ abstract class AbstractTransaction implements ClientInterface
      * @param LoggerInterface $logger
      * @param Logger $customLogger
      * @param StancerAdapter $adapter
+     * @param PhoneFormatter $phoneFormatter
      */
-    public function __construct(LoggerInterface $logger, Logger $customLogger, StancerAdapter $adapter)
+    public function __construct(LoggerInterface $logger, Logger $customLogger, StancerAdapter $adapter, PhoneFormatter $phoneFormatter)
     {
         $this->logger = $logger;
         $this->customLogger = $customLogger;
         $this->adapter = $adapter;
+        $this->phoneFormatter = $phoneFormatter;
     }
 
     /**
@@ -67,7 +75,8 @@ abstract class AbstractTransaction implements ClientInterface
         $response['object'] = [];
 
         try {
-            $response['object'] = $this->process($data);
+			$formattedData = $this->phoneFormatter->updatePhoneNumbers($data);
+            $response['object'] = $this->process($formattedData);
         } catch (Exception $e) {
             $message = __($e->getMessage() ?: 'Sorry, but something went wrong');
             $this->logger->critical($message);
