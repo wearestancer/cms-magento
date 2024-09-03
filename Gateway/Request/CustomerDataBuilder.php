@@ -57,10 +57,10 @@ class CustomerDataBuilder implements BuilderInterface
      */
     private $subjectReader;
 
-	/**
-	 * @var PhoneFormatter
-	 */
-	private $phoneFormatter;
+    /**
+     * @var PhoneFormatter
+     */
+    private $phoneFormatter;
 
     /**
      * Construct CustomerDataBuilder Class
@@ -70,11 +70,11 @@ class CustomerDataBuilder implements BuilderInterface
      * @param SubjectReader $subjectReader
      * @param PhoneFormatter $phoneFormatter
      */
-	public function __construct(SubjectReader $subjectReader, PhoneFormatter $phoneFormatter)
-	{
-		$this->subjectReader = $subjectReader;
-		$this->phoneFormatter = $phoneFormatter;
-	}
+    public function __construct(SubjectReader $subjectReader, PhoneFormatter $phoneFormatter)
+    {
+        $this->subjectReader = $subjectReader;
+        $this->phoneFormatter = $phoneFormatter;
+    }
 
     /**
      * @inheritdoc
@@ -86,10 +86,10 @@ class CustomerDataBuilder implements BuilderInterface
         $order = $paymentDO->getOrder();
         $billingAddress = $order->getBillingAddress();
 
-		$phone = $this->phoneFormatter->updatePhoneNumber(
-			$billingAddress->getTelephone(),
-			$billingAddress->getCountryId()
-		);
+        $phone = $this->phoneFormatter->updatePhoneNumber(
+            $billingAddress->getTelephone(),
+            $billingAddress->getCountryId()
+        );
 
         return [
             self::CUSTOMER => [

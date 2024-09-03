@@ -17,23 +17,22 @@ use libphonenumber\NumberParseException;
 use libphonenumber\PhoneNumberFormat;
 use libphonenumber\PhoneNumberUtil;
 
-/**
- * Checkout workflow helper
- */
 class PhoneFormatter
 {
-
-	/**
-	 * Format a phone number following E164 standard.
-	 * @param string $phoneNumber A phone number with an unknown format.
-	 * @param string $countryCode
-	 *
-	 * @return string
-	 */
-	public function updatePhoneNumber(string $phoneNumber, string $countryCode): string
-	{
-		$phoneNumberUtil = PhoneNumberUtil::getInstance();
-		$phoneNumberObject = $phoneNumberUtil->parse($phoneNumber, $countryCode);
-		return $phoneNumberUtil->format($phoneNumberObject, PhoneNumberFormat::E164);
-	}
+    /**
+     * Format a phone number following E164 standard.
+     *
+     * @since unreleased
+     *
+     * @param string $phoneNumber A phone number with an unknown format.
+     * @param string $countryCode Country code.
+     *
+     * @return string A phone number formatted following E164 standard.
+     */
+    public function updatePhoneNumber(string $phoneNumber, string $countryCode): string
+    {
+        $phoneNumberUtil = PhoneNumberUtil::getInstance();
+        $phoneNumberObject = $phoneNumberUtil->parse($phoneNumber, $countryCode);
+        return $phoneNumberUtil->format($phoneNumberObject, PhoneNumberFormat::E164);
+    }
 }
