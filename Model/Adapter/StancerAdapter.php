@@ -134,6 +134,8 @@ class StancerAdapter
      * Submit Transaction for authorize
      *
      * @since 1.0.0
+     * @since 1.0.1 Mobile phone is temporary removed
+     * @since 1.0.2 Mobile phone is back
      *
      * @param array $attributes
      * @return Payment|null

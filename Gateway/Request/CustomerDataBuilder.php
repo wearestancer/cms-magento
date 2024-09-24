@@ -59,6 +59,7 @@ class CustomerDataBuilder implements BuilderInterface
 
     /**
      * @var PhoneFormatter
+     * @since 1.0.2
      */
     private $phoneFormatter;
 
@@ -66,6 +67,7 @@ class CustomerDataBuilder implements BuilderInterface
      * Construct CustomerDataBuilder Class
      *
      * @since 1.0.0
+     * @since 1.0.2 Add PhoneFormatter
      *
      * @param SubjectReader $subjectReader
      * @param PhoneFormatter $phoneFormatter
@@ -78,6 +80,8 @@ class CustomerDataBuilder implements BuilderInterface
 
     /**
      * @inheritdoc
+     *
+     * @since 1.0.2 Phone format
      */
     public function build(array $buildSubject): array
     {

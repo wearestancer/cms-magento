@@ -22,7 +22,7 @@ class PhoneFormatter
     /**
      * Format a phone number following E164 standard.
      *
-     * @since unreleased
+     * @since 1.0.2
      *
      * @param string $phoneNumber A phone number with an unknown format.
      * @param string $countryCode Country code.
