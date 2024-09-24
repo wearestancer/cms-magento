@@ -1,11 +1,12 @@
 {
     "name": "stancer/cms-magento",
     "description": "Stancer Magento module",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "type": "magento2-module",
     "license": "MIT",
     "require": {
         "php": ">=7.4",
+        "giggsey/libphonenumber-for-php": "^8.0",
         "stancer/stancer": "^1.1 || ^2.0"
     },
     "require-dev": {

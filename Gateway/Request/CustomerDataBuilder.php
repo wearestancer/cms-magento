@@ -15,6 +15,7 @@ namespace StancerIntegration\Payments\Gateway\Request;
 
 use Magento\Payment\Gateway\Request\BuilderInterface;
 use StancerIntegration\Payments\Gateway\Helper\SubjectReader;
+use StancerIntegration\Payments\Helper\PhoneFormatter;
 
 class CustomerDataBuilder implements BuilderInterface
 {
@@ -57,19 +58,30 @@ class CustomerDataBuilder implements BuilderInterface
     private $subjectReader;
 
     /**
+     * @var PhoneFormatter
+     * @since 1.0.2
+     */
+    private $phoneFormatter;
+
+    /**
      * Construct CustomerDataBuilder Class
      *
      * @since 1.0.0
+     * @since 1.0.2 Add PhoneFormatter
      *
      * @param SubjectReader $subjectReader
+     * @param PhoneFormatter $phoneFormatter
      */
-    public function __construct(SubjectReader $subjectReader)
+    public function __construct(SubjectReader $subjectReader, PhoneFormatter $phoneFormatter)
     {
         $this->subjectReader = $subjectReader;
+        $this->phoneFormatter = $phoneFormatter;
     }
 
     /**
      * @inheritdoc
+     *
+     * @since 1.0.2 Phone format
      */
     public function build(array $buildSubject): array
     {
@@ -78,12 +90,17 @@ class CustomerDataBuilder implements BuilderInterface
         $order = $paymentDO->getOrder();
         $billingAddress = $order->getBillingAddress();
 
+        $phone = $this->phoneFormatter->updatePhoneNumber(
+            $billingAddress->getTelephone(),
+            $billingAddress->getCountryId()
+        );
+
         return [
             self::CUSTOMER => [
                 self::FIRST_NAME => $billingAddress->getFirstname(),
                 self::LAST_NAME => $billingAddress->getLastname(),
                 self::COMPANY => $billingAddress->getCompany(),
-                self::PHONE => $billingAddress->getTelephone(),
+                self::PHONE => $phone,
                 self::EMAIL => $billingAddress->getEmail(),
             ]
         ];
