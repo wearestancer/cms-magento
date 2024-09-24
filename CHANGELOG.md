@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Use International phone number as customer mobile (CMS-102)
+
 ### Fixed
 - Phone number are formatted following E164 standard ([GitHub#1](https://github.com/wearestancer/cms-magento/pull/1)), thanks [@nola-adrien](https://github.com/nola-adrien)
 
