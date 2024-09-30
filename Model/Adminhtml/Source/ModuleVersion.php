@@ -23,8 +23,8 @@ class ModuleVersion extends Field
      * Retrieve HTML markup for the Module Version
      *
      * @since 1.0.0
-     *
-     * @return string ?
+     * @param AbstractElement $element
+     * @return string
      */
     public function render(AbstractElement $element)
     {
@@ -34,10 +34,11 @@ class ModuleVersion extends Field
 
     /**
      * Return the module version
+     *
      * The parent method get the html of the AbstractElement we just send a version number.
      *
      * @since 1.0.0
-     *
+     * @param AbstractElement $element
      * @return string
      */
     protected function _getElementHtml(AbstractElement $element)

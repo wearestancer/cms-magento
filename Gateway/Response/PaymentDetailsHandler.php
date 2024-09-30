@@ -41,7 +41,6 @@ class PaymentDetailsHandler implements HandlerInterface
      * @since 1.0.0
      *
      * @param SubjectReader $subjectReader
-     * @param State $state
      */
     public function __construct(SubjectReader $subjectReader)
     {

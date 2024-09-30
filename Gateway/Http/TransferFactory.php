@@ -33,8 +33,7 @@ class TransferFactory implements TransferFactoryInterface
      */
     public function __construct(
         TransferBuilder $transferBuilder
-    )
-    {
+    ) {
         $this->transferBuilder = $transferBuilder;
     }
 

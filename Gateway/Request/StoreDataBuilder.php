@@ -51,8 +51,7 @@ class StoreDataBuilder implements BuilderInterface
     public function __construct(
         SubjectReader         $subjectReader,
         StoreManagerInterface $storeManager
-    )
-    {
+    ) {
         $this->subjectReader = $subjectReader;
         $this->storeManager = $storeManager;
     }

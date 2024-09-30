@@ -66,7 +66,9 @@ class SubjectReader
         }
 
         if (!($subject['object'] instanceof Sale)) {
-            throw new InvalidArgumentException('The object is not a class StancerIntegration\Payments\Gateway\Result\Sale.');
+            throw new InvalidArgumentException(
+                'The object is not a class StancerIntegration\Payments\Gateway\Result\Sale.'
+            );
         }
 
         return $subject['object'];

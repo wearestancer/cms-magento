@@ -54,8 +54,7 @@ class Config extends \Magento\Payment\Gateway\Config\Config
         string               $methodCode = null,
         string               $pathPattern = self::DEFAULT_PATH_PATTERN,
         Json                 $serializer = null
-    )
-    {
+    ) {
         parent::__construct($scopeConfig, $methodCode, $pathPattern);
         $this->storeConfigResolver = $storeConfigResolver;
     }

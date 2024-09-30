@@ -46,8 +46,7 @@ class RefundDataBuilder implements BuilderInterface
     public function __construct(
         SubjectReader   $subjectReader,
         LoggerInterface $logger
-    )
-    {
+    ) {
         $this->subjectReader = $subjectReader;
         $this->logger = $logger;
     }

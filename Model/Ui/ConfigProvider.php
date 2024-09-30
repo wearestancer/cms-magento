@@ -18,12 +18,14 @@ use Magento\Framework\UrlInterface;
 use Magento\Payment\Helper\Data as PaymentHelper;
 use StancerIntegration\Payments\Gateway\Config\Config;
 
-/**
- * Class ConfigProvider
- */
 class ConfigProvider implements ConfigProviderInterface
 {
     public const CODE = 'stancer_payments';
+
+    /**
+     * @var Config
+     */
+    private $config;
     /**
      * @var PaymentHelper
      */
@@ -32,16 +34,13 @@ class ConfigProvider implements ConfigProviderInterface
      * @var UrlInterface
      */
     protected $urlBuilder;
-    /**
-     * @var Config
-     */
-    private $config;
 
     /**
      * Construct ConfigProvider Class.
      *
      * @since 1.0.0
      *
+     * @param Config $config
      * @param PaymentHelper $paymentHelper
      * @param UrlInterface $urlBuilder
      */
@@ -49,8 +48,7 @@ class ConfigProvider implements ConfigProviderInterface
         Config        $config,
         PaymentHelper $paymentHelper,
         UrlInterface  $urlBuilder
-    )
-    {
+    ) {
         $this->config = $config;
         $this->paymentHelper = $paymentHelper;
         $this->urlBuilder = $urlBuilder;

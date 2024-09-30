@@ -37,8 +37,7 @@ class ResponseCodeValidator extends AbstractValidator
     public function __construct(
         ResultInterfaceFactory $resultFactory,
         SubjectReader          $subjectReader
-    )
-    {
+    ) {
         parent::__construct($resultFactory);
         $this->subjectReader = $subjectReader;
     }

@@ -33,8 +33,7 @@ class CaptureHandler implements HandlerInterface
      */
     public function __construct(
         SubjectReader $subjectReader
-    )
-    {
+    ) {
         $this->subjectReader = $subjectReader;
     }
 

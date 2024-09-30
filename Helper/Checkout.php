@@ -35,8 +35,7 @@ class Checkout
      */
     public function __construct(
         Session $session
-    )
-    {
+    ) {
         $this->session = $session;
     }
 

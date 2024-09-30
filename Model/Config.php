@@ -15,12 +15,12 @@ namespace StancerIntegration\Payments\Model;
 
 class Config
 {
-    const MODULE_VERSION = '1.0.2';
+    public const MODULE_VERSION = '1.0.1';
 
     /**
      * Payments flows
      */
-    const PAYMENT_FLOW_REDIRECT = 'redirect';
+    public const PAYMENT_FLOW_REDIRECT = 'redirect';
 
-    const PAYMENT_FLOW_IFRAME = 'iframe';
+    public const PAYMENT_FLOW_IFRAME = 'iframe';
 }
