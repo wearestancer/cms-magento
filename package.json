@@ -1,0 +1,28 @@
+{
+  "name": "stancer/cms-magento",
+  "version": "1.0.2",
+  "description": "Stancer module for Magento",
+  "license": "MIT",
+  "scripts": {
+    "build:archive": "env node .scripts/zip.js",
+    "version": "env node .scripts/version.js"
+  },
+  "devDependencies": {
+    "archiver": "^5.0.0",
+    "glob": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.priv.iliad78.net:stancer/ecommerce-module/magento.git"
+  },
+  "contributors": [
+    {
+      "name": "Sébastien Deren",
+      "email": "sderen@stancer.com"
+    }
+  ]
+}

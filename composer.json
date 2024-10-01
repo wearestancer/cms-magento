@@ -26,6 +26,9 @@
     "config": {
         "sort-packages": true
     },
+    "scripts": {
+        "phpcs": "magento-coding-standard/vendor/bin/phpcs --ignore=\"vendor,node_modules,magento-coding-standard\" --standard=Magento2 ."
+    },
     "support": {
         "docs": "https://gitlab.com/wearestancer/cms/magento/-/wikis/home",
         "issues": "https://gitlab.com/wearestancer/cms/magento/-/issues",

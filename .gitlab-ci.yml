@@ -21,10 +21,11 @@ Create archive:
     - php -v
     - composer --version
     - pnpm -v
+    - pnpm install
 
   script:
     - pnpm run build:archive
-    - export ZIP_NAME="wc-${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}"
+    - export ZIP_NAME="magento-${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}"
     - echo "${ZIP_NAME}"
     - mv stancer*.zip "${ZIP_NAME}.zip"
 
@@ -44,21 +45,8 @@ phpcs:
     - composer create-project magento/magento-coding-standard --stability=dev magento-coding-standard
 
   script:
-    - magento-coding-standard/vendor/bin/phpcs --ignore="vendor,node_modules,magento-coding-standard" --standard=Magento2 .
+    - composer phpcs
 
   artifacts:
     reports:
       junit: phpcs.junit.xml
-
-eslint:
-  stage: test
-  image: ${DOCKER_REGISTRY}/wordpress:php${PHP_VERSION}
-
-  before_script:
-  - pnpm -v
-  - composer create-project magento/magento-coding-standard --stability=dev magento-coding-standard
-  - (cd magento-coding-standard && pnpm install);
-
-  #Change This command by a script in our package.json when wrote.
-  script:
-  - magento-coding-standard/node_modules/.bin/eslint -c magento-coding-standard/eslint/.eslintrc --rulesdir magento-coding-standard/eslint/rules --debug ./view

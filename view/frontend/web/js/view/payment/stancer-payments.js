@@ -9,8 +9,5 @@ define([
         component: 'StancerIntegration_Payments/js/view/payment/method-renderer/iframe-methods'
     });
 
-    /**
-     * Add view logic here if needed
-     */
     return Component.extend({});
 });
