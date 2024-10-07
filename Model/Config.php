@@ -15,7 +15,7 @@ namespace StancerIntegration\Payments\Model;
 
 class Config
 {
-    public const MODULE_VERSION = '1.0.2';
+    public const MODULE_VERSION = '1.0.3';
 
     /**
      * Payments flows

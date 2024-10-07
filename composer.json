@@ -1,7 +1,7 @@
 {
     "name": "stancer/cms-magento",
     "description": "Stancer Magento module",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "type": "magento2-module",
     "license": "MIT",
     "require": {
