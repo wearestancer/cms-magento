@@ -1,17 +1,17 @@
 define(['ko'], function (ko) {
-  'use strict';
+    'use strict';
 
-  let isInAction = ko.observable(false);
+    let isInAction = ko.observable(false);
 
-  return {
-    isInAction: isInAction,
+    return {
+        isInAction: isInAction,
 
-    /**
-     * @param {jQuery.Event} event
-     */
-    stopEventPropagation: function (event) {
-      event.stopImmediatePropagation();
-      event.preventDefault();
-    },
-  };
+        /**
+         * @param {jQuery.Event} event
+         */
+        stopEventPropagation: function (event) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+        }
+    };
 });

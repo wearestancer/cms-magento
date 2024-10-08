@@ -37,8 +37,7 @@ class Fieldset extends \Magento\Config\Block\System\Config\Form\Fieldset
         \Magento\Framework\View\Helper\Js   $jsHelper,
         \Magento\Config\Model\Config        $backendConfig,
         array                               $data = []
-    )
-    {
+    ) {
         $this->_backendConfig = $backendConfig;
         parent::__construct($context, $authSession, $jsHelper, $data);
     }
@@ -123,6 +122,8 @@ HTML;
     }
 
     /**
+     * Add Js to the Config page of our module.
+     *
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)

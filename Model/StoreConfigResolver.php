@@ -57,8 +57,7 @@ class StoreConfigResolver
         RequestHttp           $request,
         OrderRepository       $orderRepository,
         SessionQuote          $sessionQuote
-    )
-    {
+    ) {
         $this->orderRepository = $orderRepository;
         $this->storeManager = $storeManager;
         $this->request = $request;

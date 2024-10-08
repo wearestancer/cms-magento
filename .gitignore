@@ -3,6 +3,7 @@
 node_modules/
 vendor/
 vendor-prefixer/
+.pnpm-store/
 
 # Local
 .vscode/
@@ -16,3 +17,8 @@ vendor-prefixer/
 # Generated content
 !**/.gitkeep
 composer.lock
+magento-coding**/
+
+# Sensitive
+.devcontainer/**/auth.json
+.devcontainer/**/sensitive.env

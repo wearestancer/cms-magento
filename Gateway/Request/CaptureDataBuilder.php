@@ -43,6 +43,7 @@ class CaptureDataBuilder implements BuilderInterface
      * @since 1.0.0
      *
      * @param SubjectReader $subjectReader
+     * @param StancerAdapter $stancerAdapter
      */
     public function __construct(SubjectReader $subjectReader, StancerAdapter $stancerAdapter)
     {
@@ -62,12 +63,16 @@ class CaptureDataBuilder implements BuilderInterface
 
         $paymentId = $payment->getAdditionalInformation(PaymentDetailsHandler::PAYMENT_ID);
         if (!$paymentId) {
-            throw new LocalizedException(__('No authorization transaction to proceed capture.'));
+            throw new LocalizedException(
+                __('No authorization transaction to proceed capture.')
+            );
         }
 
         $stancerPayment = $this->stancerAdapter->getPayment($paymentId);
         if (!$stancerPayment || $stancerPayment->getStatus() !== Status::AUTHORIZED) {
-            throw new LocalizedException(__('Capture is not allowed due to the transaction is not in authorized status.'));
+            throw new LocalizedException(
+                __('Capture is not allowed due to the transaction is not in authorized status.')
+            );
         }
 
         return [

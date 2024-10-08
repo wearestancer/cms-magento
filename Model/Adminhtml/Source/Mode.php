@@ -15,18 +15,18 @@ namespace StancerIntegration\Payments\Model\Adminhtml\Source;
 
 class Mode
 {
-    const TEST = 'test';
-    const LIVE = 'live';
+    public const TEST = 'test';
+    public const LIVE = 'live';
 
-    public function toOptionArray()
-    {
-     /**
+    /**
      * Get the options in a form of an array
      *
      * @since 1.0.0
      *
      * @return array[]
      */
+    public function toOptionArray()
+    {
         return [
             [
                 'value' => Mode::TEST,
