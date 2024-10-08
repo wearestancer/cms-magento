@@ -104,8 +104,7 @@ class ReturnUrl extends Action implements CsrfAwareActionInterface, HttpGetActio
         Checkout        $checkoutHelper,
         StancerAdapter  $stancerAdapter,
         LoggerInterface $logger
-    )
-    {
+    ) {
         parent::__construct($context);
 
         $this->_checkoutSession = $checkoutSession;
@@ -120,8 +119,7 @@ class ReturnUrl extends Action implements CsrfAwareActionInterface, HttpGetActio
      */
     public function createCsrfValidationException(
         RequestInterface $request
-    ): ?InvalidRequestException
-    {
+    ): ?InvalidRequestException {
         return null;
     }
 
@@ -145,7 +143,9 @@ class ReturnUrl extends Action implements CsrfAwareActionInterface, HttpGetActio
         $order = $this->getOrderFromRequest();
         if ($order && $this->checkOrderState($order)) {
             $payment = $order->getPayment();
-            $gatewayPayment = $this->_stancerAdapter->getPayment($payment->getAdditionalInformation(PaymentDetailsHandler::PAYMENT_ID));
+            $gatewayPayment = $this->_stancerAdapter->getPayment(
+                $payment->getAdditionalInformation(PaymentDetailsHandler::PAYMENT_ID)
+            );
             if ($gatewayPayment && $gatewayPayment->isSuccess()) {
                 $payment->registerAuthorizationNotification($order->getBaseTotalDue());
                 $payment->capture();

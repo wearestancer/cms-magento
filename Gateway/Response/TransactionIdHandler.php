@@ -34,8 +34,7 @@ class TransactionIdHandler implements HandlerInterface
      */
     public function __construct(
         SubjectReader $subjectReader
-    )
-    {
+    ) {
         $this->subjectReader = $subjectReader;
     }
 
@@ -76,7 +75,7 @@ class TransactionIdHandler implements HandlerInterface
      * @since 1.0.0
      *
      * @param Payment $orderPayment
-     * @param \Stancer\Payment $transaction
+     * @param Sale $saleResult
      * @return void
      */
     protected function setTransactionId(Payment $orderPayment, Sale $saleResult)

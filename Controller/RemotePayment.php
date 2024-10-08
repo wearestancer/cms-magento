@@ -42,6 +42,9 @@ abstract class RemotePayment extends Action
      */
     protected $_data;
 
+    /**
+     * @var RequestInterface
+     */
     protected $_request;
     /**
      * @var Config
@@ -61,6 +64,7 @@ abstract class RemotePayment extends Action
      * @param Context $context
      * @param Session $checkoutSession
      * @param PaymentHelper $paymentHelper
+     * @param Config $config
      */
     public function __construct(
         RequestInterface $request,
@@ -68,8 +72,7 @@ abstract class RemotePayment extends Action
         Session          $checkoutSession,
         PaymentHelper    $paymentHelper,
         Config           $config
-    )
-    {
+    ) {
         $this->_request = $request;
         $this->_checkoutSession = $checkoutSession;
         $this->_paymentHelper = $paymentHelper;
@@ -89,7 +92,9 @@ abstract class RemotePayment extends Action
     {
         $paymentId = $this->getPaymentInformation(PaymentDetailsHandler::PAYMENT_ID);
         if (!$paymentId) {
-            throw new \Magento\Framework\Validator\Exception(__('Payment is not initialized, please place your order first!'));
+            throw new \Magento\Framework\Validator\Exception(
+                __('Payment is not initialized, please place your order first!')
+            );
         }
 
         return $paymentId;
@@ -107,7 +112,9 @@ abstract class RemotePayment extends Action
     {
         $paymentId = $this->getPaymentInformation(PaymentDetailsHandler::PAYMENT_PAGE_URL);
         if (!$paymentId) {
-            throw new \Magento\Framework\Validator\Exception(__('Payment is not initialized, please place your order first!'));
+            throw new \Magento\Framework\Validator\Exception(
+                __('Payment is not initialized, please place your order first!')
+            );
         }
 
         return $paymentId;
@@ -117,7 +124,7 @@ abstract class RemotePayment extends Action
      * Get the Magento payment information
      *
      * @since 1.0.0
-     *
+     * @param string $key
      * @return string|null
      */
     public function getPaymentInformation($key)
@@ -125,7 +132,9 @@ abstract class RemotePayment extends Action
         try {
             $order = $this->getCheckoutSession()->getLastRealOrder();
             if (!$order) {
-                throw new \Magento\Framework\Validator\Exception(__('Please place your order first!'));
+                throw new \Magento\Framework\Validator\Exception(
+                    __('Please place your order first!')
+                );
             }
 
             $method = $order->getPayment()->getMethod();
@@ -134,7 +143,9 @@ abstract class RemotePayment extends Action
                 return $order->getPayment()->getAdditionalInformation()[$key] ?? null;
             }
 
-            throw new \Magento\Framework\Validator\Exception(__('The selected Payment Method is Not Belonging to Stancer Payments.'));
+            throw new \Magento\Framework\Validator\Exception(
+                __('The selected Payment Method is Not Belonging to Stancer Payments.')
+            );
         } catch (Exception $e) {
             $this->messageManager->addExceptionMessage($e, __($e->getMessage()));
             $this->getCheckoutSession()->restoreQuote();

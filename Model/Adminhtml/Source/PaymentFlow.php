@@ -19,12 +19,12 @@ use StancerIntegration\Payments\Model\Config;
 class PaymentFlow implements OptionSourceInterface
 {
      /**
-     * Get the options in a form of an array
-     *
-     * @since 1.0.0
-     *
-     * @return array[]
-     */
+      * Get the options in a form of an array
+      *
+      * @since 1.0.0
+      *
+      * @return array[]
+      */
     public function toOptionArray()
     {
         return [

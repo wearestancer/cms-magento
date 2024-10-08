@@ -47,8 +47,7 @@ class Payment extends \Magento\Config\Block\System\Config\Form\Fieldset
         \Magento\Config\Model\Config        $backendConfig,
         array                               $data = [],
         ?SecureHtmlRenderer                 $secureRenderer = null
-    )
-    {
+    ) {
         $this->_backendConfig = $backendConfig;
         $secureRenderer = $secureRenderer ?? ObjectManager::getInstance()->get(SecureHtmlRenderer::class);
         parent::__construct($context, $authSession, $jsHelper, $data, $secureRenderer);

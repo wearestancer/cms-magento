@@ -69,6 +69,7 @@ class StancerAdapter
      * @param Config $config
      * @param StoreConfigResolver $storeConfigResolver
      * @param UrlInterface $urlBuilder
+     * @param ProductMetadata $productMetadata
      * @param LoggerInterface $logger
      * @throws InputException
      * @throws NoSuchEntityException
@@ -79,8 +80,7 @@ class StancerAdapter
         UrlInterface        $urlBuilder,
         ProductMetadata     $productMetadata,
         LoggerInterface     $logger
-    )
-    {
+    ) {
         $this->config = $config;
         $this->storeConfigResolver = $storeConfigResolver;
         $this->urlBuilder = $urlBuilder;
@@ -120,11 +120,22 @@ class StancerAdapter
         $apiConfig->setLogger($this->logger);
     }
 
+    /**
+     * Set the value of the environment.
+     *
+     * @param string $value
+     * @return void
+     */
     private function setEnvironment($value)
     {
         $this->environment = $value;
     }
 
+    /**
+     * Is the environment live.
+     *
+     * @return boolean
+     */
     public function isLiveMode(): bool
     {
         return $this->environment === Mode::LIVE;
@@ -181,6 +192,7 @@ class StancerAdapter
      *
      * @since 1.0.0
      *
+     * @param Payment $instance
      * @return Payment|null
      */
     private function send(Payment $instance): ?Payment
@@ -195,12 +207,13 @@ class StancerAdapter
     }
 
     /**
-     * Get a Stancer Payment
-     * if no transactionId is null we will get a new payment
+     * Get a Stancer Payment.
+     *
+     * If no transactionId is null we will get a new payment.
      *
      * @since 1.0.0
      *
-     * @param $transactionId string|null The Stancer\Payment Id.
+     * @param string|null $transactionId The Stancer\Payment Id.
      * @return null|Stancer\Payment
      */
     public function getPayment($transactionId): ?Payment
@@ -259,7 +272,7 @@ class StancerAdapter
      *
      * @since 1.0.0
      *
-     * @param $message
+     * @param string $message
      */
     private function log($message)
     {
@@ -271,7 +284,7 @@ class StancerAdapter
      *
      * @since 1.0.0.
      *
-     * @param string $orderId  The ID of the Magento order.
+     * @param string $orderId The ID of the Magento order.
      * @param string|int $amount The amount of the payment.
      * @param string $storeName The name of the store which the payment has be done.
      * @return string The Description of the payment.
@@ -279,12 +292,19 @@ class StancerAdapter
     private function getPaymentDescription($orderId, $amount, $storeName)
     {
         $pattern = '%order%, %amount%, %store%';
-        $customPattern = $this->config->getValue(Config::KEY_PAYMENT_DESCRIPTION, $this->storeConfigResolver->getStoreId());
+        $customPattern = $this->config->getValue(
+            Config::KEY_PAYMENT_DESCRIPTION,
+            $this->storeConfigResolver->getStoreId()
+        );
 
         if (!empty($customPattern)) {
             $pattern = $customPattern;
         }
 
-        return str_replace(['%order%', '%amount%', '%store%'], [$orderId, $amount, $storeName], $pattern);
+        return str_replace(
+            ['%order%', '%amount%', '%store%'],
+            [$orderId, $amount, $storeName],
+            $pattern
+        );
     }
 }
