@@ -106,7 +106,6 @@ class AddressDataBuilder implements BuilderInterface
         $billingAddress = $order->getBillingAddress();
         if ($billingAddress) {
 
-
             $result[self::BILLING_ADDRESS] = [
                 self::FIRST_NAME => $billingAddress->getFirstname(),
                 self::LAST_NAME => $billingAddress->getLastname(),

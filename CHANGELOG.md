@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ThreeDS configuration (CMS-242)
 
 ### Fixed
+- Addresses didn't fully respect the AddressInterface (CMS-236)
 - More resilient iframe redirection (CMS-245)
 
 
