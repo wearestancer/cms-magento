@@ -3,6 +3,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/payment.xsd"
 >
+  <groups>
+    <group id="stancer_group">
+      <label>Stancer</label>
+    </group>
+  </groups>
   <methods>
     <method name="stancer_payments">
       <allow_multiple_address>
