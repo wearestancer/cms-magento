@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+### Added
+  - Refund for magento. (CMS-78)
+
 ### Removed
 - ThreeDS configuration (CMS-242)
 
@@ -13,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Addresses didn't fully respect the AddressInterface (CMS-236)
 - More resilient iframe redirection (CMS-245)
 
+
+## [unreleased]
+
+### Added
+  - Refund for magento. (CMS-78)
 
 ## [1.0.3] - 2024-10-08
 
