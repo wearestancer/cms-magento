@@ -179,10 +179,7 @@ class StancerAdapter
             $this->getPaymentDescription($orderId, $amount, $attributes[StoreDataBuilder::STORE_NAME])
         );
         $payment->setCustomer($customer);
-
-        if ($attributes['options']['3dSecure']['required'] ?? false) {
-            $payment->setAuth(true);
-        }
+        $payment->setAuth(true);
 
         return $this->send($payment) ? new Sale($payment->getId(), $nonce, $payment->getPaymentPageUrl()) : null;
     }

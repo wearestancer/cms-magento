@@ -101,10 +101,6 @@
           name="address" xsi:type="string">
         StancerIntegration\Payments\Gateway\Request\AddressDataBuilder
         </item>
-        <item
-          name="3dSecure" xsi:type="string">
-        StancerIntegration\Payments\Gateway\Request\ThreeDSecureDataBuilder
-        </item>
       </argument>
     </arguments>
   </virtualType>
@@ -134,12 +130,6 @@
     </arguments>
   </type>
 
-  <!-- 3D Secure Data Builder -->
-  <type name="StancerIntegration\Payments\Gateway\Request\ThreeDSecureDataBuilder">
-    <arguments>
-      <argument name="config" xsi:type="object"> StancerPaymentsConfig </argument>
-    </arguments>
-  </type>
 
   <!-- Capture command -->
   <virtualType name="StancerPaymentsGatewayCaptureCommand"
