@@ -100,6 +100,7 @@ define([
                         this.paymentReady(true);
                         this.iframeIsLoaded = true;
                         this.isPlaceOrderActionAllowed(true);
+                        window.addEventListener('message', (e) => iframe.returnIframe(e));
                     }.bind(this)
                 )
                 .fail(
