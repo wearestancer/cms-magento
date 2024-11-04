@@ -99,7 +99,7 @@ class SubjectReader
     /**
      * Reads refund transaction
      *
-     * @since unreleased
+     * @since 1.1.0
      *
      * @param array $subject
      * @return void
