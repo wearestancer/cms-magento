@@ -259,8 +259,8 @@ class StancerAdapter
             return $payment->refund($amount ? $amount * 100 : null);
         } catch (Exception $exception) {
             $this->log($exception->getMessage());
+            throw $exception;
         }
-
         return null;
     }
 

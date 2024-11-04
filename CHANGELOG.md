@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+### Added
+- Refund for magento (CMS-78)
+
 ### Removed
 - ThreeDS configuration (CMS-242)
 
