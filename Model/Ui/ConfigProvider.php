@@ -70,6 +70,9 @@ class ConfigProvider implements ConfigProviderInterface
                     'title' => $this->config->getValue('title'),
                     'mode' => $this->config->getMode(),
                     'flow' => $this->config->getValue('payment_flow'),
+                    'can_refund' => $this->config->isRefundActive(),
+                    'can_refund_partial_per_invoice' => $this->config->isRefundActive(),
+
                 ],
             ]
         ];

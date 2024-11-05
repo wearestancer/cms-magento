@@ -24,14 +24,12 @@ class Config extends \Magento\Payment\Gateway\Config\Config
 {
     public const KEY_MODE = 'mode';
     public const KEY_ACTIVE = 'active';
+    public const KEY_REFUND_ACTIVE ='refund_active';
     public const KEY_PUBLIC_KEY = 'public_key';
     public const KEY_PRIVATE_KEY = 'private_key';
     public const KEY_TEST_MODE_PUBLIC_KEY = 'test_public_key';
     public const KEY_TEST_MODE_PRIVATE_KEY = 'test_private_key';
     public const KEY_PAYMENT_FLOW = 'payment_flow';
-    public const KEY_3D_SECURE_ENABLED = 'three_ds_enabled';
-    public const KEY_3D_SECURE_ALWAYS_REQUEST = 'three_ds_always_request';
-    public const KEY_3D_SECURE_THRESHOLD_AMOUNT = 'three_ds_threshold_amount';
     public const KEY_PAYMENT_PAGE_URL = 'payment_page_url';
     public const KEY_PAYMENT_DESCRIPTION = 'payment_description';
 
@@ -114,6 +112,21 @@ class Config extends \Magento\Payment\Gateway\Config\Config
     }
 
     /**
+     * Get Refund Configuration
+     *
+     * @return bool
+     * @throws InputException
+     * @throws NoSuchEntityException
+     */
+    public function isRefundActive(): bool
+    {
+        return $this->getValue(
+            self::KEY_REFUND_ACTIVE,
+            $this->storeConfigResolver->getStoreId()
+        );
+    }
+
+    /**
      * Get Private Key
      *
      * @since 1.0.0
@@ -149,61 +162,6 @@ class Config extends \Magento\Payment\Gateway\Config\Config
             $storeId ?? $this->storeConfigResolver->getStoreId()
         );
     }
-
-    /**
-     * Get 3D Secure Status
-     *
-     * @since 1.0.0
-     *
-     * @param int|null $storeId
-     * @return bool
-     * @throws InputException
-     * @throws NoSuchEntityException
-     */
-    public function is3DSecureActive(int $storeId = null): bool
-    {
-        return (bool)$this->getValue(
-            self::KEY_3D_SECURE_ENABLED,
-            $storeId ?? $this->storeConfigResolver->getStoreId()
-        );
-    }
-
-    /**
-     * Get is 3D Secure Always Required?
-     *
-     * @since 1.0.0
-     *
-     * @param int|null $storeId
-     * @return bool
-     * @throws InputException
-     * @throws NoSuchEntityException
-     */
-    public function is3DSecureAlwaysRequired(int $storeId = null): bool
-    {
-        return (bool)$this->getValue(
-            self::KEY_3D_SECURE_ALWAYS_REQUEST,
-            $storeId ?? $this->storeConfigResolver->getStoreId()
-        );
-    }
-
-    /**
-     * Get 3D Secure Threshold Amount
-     *
-     * @since 1.0.0
-     *
-     * @param int|null $storeId
-     * @return double
-     * @throws InputException
-     * @throws NoSuchEntityException
-     */
-    public function get3DSecureThresholdAmount(int $storeId = null)
-    {
-        return (double)$this->getValue(
-            self::KEY_3D_SECURE_THRESHOLD_AMOUNT,
-            $storeId ?? $this->storeConfigResolver->getStoreId()
-        );
-    }
-
     /**
      * Get custom payment description
      *

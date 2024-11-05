@@ -14,9 +14,11 @@
 namespace StancerIntegration\Payments\Gateway\Helper;
 
 use InvalidArgumentException;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Payment\Gateway\Data\PaymentDataObjectInterface;
 use Magento\Payment\Gateway\Helper;
 use Stancer\Payment;
+use Stancer\Exceptions;
 use StancerIntegration\Payments\Gateway\Result\Sale;
 
 class SubjectReader
@@ -33,7 +35,7 @@ class SubjectReader
     {
         $response = Helper\SubjectReader::readResponse($subject);
         if (!isset($response['object']) || !is_object($response['object'])) {
-            throw new InvalidArgumentException('Response object does not exist');
+            throw new InvalidArgumentException('Response object does not exist responseObject');
         }
 
         return $response['object'];
@@ -85,6 +87,32 @@ class SubjectReader
     {
         if (!isset($subject['object']) || !is_object($subject['object'])) {
             throw new InvalidArgumentException('Response object does not exist');
+        }
+
+        if (!($subject['object'] instanceof Payment)) {
+            throw new InvalidArgumentException('The object is not a class \Stancer\Payment');
+        }
+
+        return $subject['object'];
+    }
+
+    /**
+     * Reads refund transaction
+     *
+     * @since 1.1.0
+     *
+     * @param array $subject
+     * @return void
+     */
+    public function readRefund(array $subject)
+    {
+        if (!isset($subject['object']) || !is_object($subject['object'])) {
+            throw new LocalizedException(__('An unexpected Error has occured.'));
+        }
+        if ($subject['object'] instanceof Exceptions\ConflictException) {
+            throw new LocalizedException(
+                __('Refund is not available, this is probably because your payment isn\'t captured yet')
+            );
         }
 
         if (!($subject['object'] instanceof Payment)) {

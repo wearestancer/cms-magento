@@ -19,10 +19,6 @@ Title,Title
 "Private Key","Private Key"
 "Test Mode Public Key","Test Mode Public Key"
 "Test Mode Private Key","Test Mode Private Key"
-"3D Secure","3D Secure"
-"3D Secure Verification","3D Secure Verification"
-"Always request 3DS","Always request 3DS"
-"Threshold Amount","Threshold Amount"
 "Failed to load the payment page, please try again and make sure the order placed.","Failed to load the payment page, please try again and make sure the order placed."
 "Payment is not initialized, please place your order first!","Payment is not initialized, please place your order first!"
 "Please place your order first!","Please place your order first!"
@@ -37,3 +33,4 @@ Title,Title
 "SETTING_GUIDE","<p>You will need to set your API keys before you can accept payments. If you do not yet have a Stancer account, please <a href='https://manage.stancer.com/en/sign-up?utm_campaign=marketing&utm_source=magento&utm_medium=referred' target='_blank' rel='noopener noreferrer'>click here</a> to register.</p><p><a href='https://www.stancer.com/documentation/resources/?utm_campaign=marketing&utm_source=magento&utm_medium=referred' target='_blank' rel='noopener noreferrer'>Learn more</a> about configuring this module from Stancer's official Magento Documentation.</p><p>For additional technical support contact <a href='mailto:magento@stancer.com' target='_blank' rel='noopener noreferrer'>magento@stancer.com</a>.</p>"
 "Payment Description","Payment Description"
 "By using the following tags you can use order data in the payment description:<br></br>Order ID: %order%<br></br>Amount: %amount%<br></br>Store Name: %store%","By using the following tags you can use order data in the payment description:<br></br>Order ID: %order%<br></br>Amount: %amount%<br></br>Store Name: %store%'
+"Refund is not available, this is probably because your payment isn't captured yet","Refund is not available, this is probably because your payment isn't captured yet"
